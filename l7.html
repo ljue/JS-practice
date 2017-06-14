@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная 7</title>
+
+</head>
+<body>
+
+<!-- •   Создать функцию, генерирующую шахматную доску. При этом можно использовать любые html-тэги по своему желанию. Доска должна быть разленована соответствующим образом, т.е. чередовать черные и белые ячейки. Строки должны нумероваться числами от 1 до 8, столбцы – латинскими буквами A, B, C, D, E, F, G, H.
+•   Заполнить созданную таблицу буквами, отвечающими за шахматную фигуру, например К-король, Ф – ферзь и тп., причем все фигуры должны стоять на своих местах и быть соответственно черными и белыми.
+•   * Заменить буквы, обозначающие фигуры картинками
+ -->
+
+
+
+<script>
+    var arAlf=['A','B','C','D','E','F','G','H'];
+    var picWhiteFigure=['\u2659','\u2656','\u2658','\u2657','\u2655','\u2654','\u2657','\u2658','\u2656'];
+    var picBlackFigure=['\u265F','\u265C','\u265E','\u265D','\u265B','\u265A','\u265D','\u265E','\u265C'];
+    function createTable2()
+    {
+        var newTab=document.createElement('table');
+        for(var i=0; i<10;i++) {
+            var newRow = document.createElement('tr');
+            for(var j=0; j<10;j++) {
+
+                var newCell = document.createElement('td');
+
+                // параметры ячеек доски
+                newCell.width = 50;
+                newCell.height=50;
+                newCell.align='center';
+                if(i>0&&i<9&&j>0&&j<9)
+                    newCell.style.fontSize='220%';
+
+                // выставляем ряды букв\цифр вокруг доски
+                if((j==0||j==9)&&(i>0&&i<9)){
+                    var newText=document.createTextNode(i);
+                    newCell.appendChild(newText);
+                }
+                if((i==0||i==9)&&(j>0&&j<9)){
+                    var newText=document.createTextNode(arAlf[j-1]);
+                    newCell.appendChild(newText);
+                }
+
+                // ставим фигурки
+                if(i==7&&(j>0&&j<9)){
+                    var newText=document.createTextNode( picWhiteFigure[0]);
+                    newCell.appendChild(newText);
+                }
+                if(i==8&&(j>0&&j<9)){
+                    var newText=document.createTextNode(picWhiteFigure[j]);
+                    newCell.appendChild(newText);
+                }
+                if(i==2&&(j>0&&j<9)){
+                    var newText=document.createTextNode( picBlackFigure[0]);
+                    newCell.appendChild(newText);
+                }
+                if(i==1&&(j>0&&j<9)){
+                    var newText=document.createTextNode(picBlackFigure[j]);
+                    newCell.appendChild(newText);
+                }
+
+                // закрашиваем доску и фигурки
+                if(((j%2==0)&&(i%2!=0)||(i%2==0)&&(j%2!=0))&&(i>0&&j>0&&i<9&&j<9)) {
+                    newCell.style.backgroundColor = 'black';
+                    newCell.style.color = 'white';
+                }
+                newRow.appendChild(newCell);
+            }
+            newTab.appendChild(newRow);
+        }
+       newTab.border=1;
+        document.body.appendChild(newTab);
+    }
+    createTable2();
+
+</script>
+
+
+<div style="display: inline-block">
+<script>
+    var arAlf=['A','B','C','D','E','F','G','H'];
+    var figure=['П','Л','Кь','С','Ф','Ко','С','Кь','Л'];
+    function createTable()
+    {
+        var newTab=document.createElement('table');
+        for(var i=0; i<10;i++) {
+            var newRow = document.createElement('tr');
+            for(var j=0; j<10;j++) {
+
+                var newCell = document.createElement('td');
+
+                // параметры ячеек доски
+                newCell.width = 50;
+                newCell.height=50;
+                newCell.align='center';
+                if(i>0&&i<9&&j>0&&j<9)
+                    newCell.style.fontSize='150%';
+
+                // выставляем ряды букв\цифр вокруг доски
+                if((j==0||j==9)&&(i>0&&i<9)){
+                    var newText=document.createTextNode(i);
+                    newCell.appendChild(newText);
+                }
+                if((i==0||i==9)&&(j>0&&j<9)){
+                    var newText=document.createTextNode(arAlf[j-1]);
+                    newCell.appendChild(newText);
+                }
+
+                // ставим фигурки
+                if((i==2||i==7)&&(j>0&&j<9)){
+                    var newText=document.createTextNode(figure[0]);
+                    newCell.appendChild(newText);
+                }
+                if((i==1||i==8)&&(j>0&&j<9)){
+                    var newText=document.createTextNode(figure[j]);
+                    newCell.appendChild(newText);
+                }
+
+                // закрашиваем доску
+                if(((j%2==0)&&(i%2!=0)||(i%2==0)&&(j%2!=0))&&(i>0&&j>0&&i<9&&j<9)) {
+                    newCell.style.backgroundColor = 'black';
+                    newCell.style.color = 'white';
+                }
+
+                newRow.appendChild(newCell);
+            }
+            newTab.appendChild(newRow);
+        }
+        newTab.border=1;
+        document.body.appendChild(newTab);
+    }
+ //   createTable();
+
+</script>
+</div>
+
+
+<!--<script>-->
+<!--function createTable()-->
+<!--{-->
+<!--var newTab=document.createElement('table');-->
+<!--for(var i=0; i<8;i++) {-->
+<!--var newRow = newTab.insertRow(i);-->
+<!--newRow.height=100;-->
+<!--for(var j=0; j<8;j++) {-->
+<!--var newCell = newRow.insertCell(j);-->
+<!--newCell.width = 100;-->
+<!--newCell.border=2;-->
+<!--newCell.backgroundColor='black';-->
+<!--}-->
+<!--}-->
+<!--newTab.border=2;-->
+<!--document.body.appendChild(newTab);-->
+<!--}-->
+<!--createTable();-->
+
+<!--</script>-->
+
+<!--<script>-->
+<!--function createTable_innerHTML()-->
+    <!--{-->
+    <!--document.body.innerHTML='<table id="tbl" width="400" border="1"></table>';-->
+    <!--}-->
+<!--</script>-->
+
+
+
+<!--<style>-->
+    <!--.alert{-->
+        <!--padding:15px;-->
+        <!--border:1px solid #d6e9c6;-->
+        <!--border-radius:4px;-->
+        <!--color: #3c763d;-->
+        <!--background-color: #dff0d8;-->
+    <!--}-->
+<!--</style>-->
+
+<!--<div class="alert">-->
+<!--<strong>Ура!</strong> Вы прочитали это важное сообщение.-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;var div =document.createElement('div');&ndash;&gt;-->
+<!--&lt;!&ndash;div.className="alert alert-success";&ndash;&gt;-->
+<!--&lt;!&ndash;div.innerHTML="<strong>Ура!</strong> Вы прочитали это важное сообщение.";&ndash;&gt;-->
+<!--<ol id="list">-->
+<!--<li>0</li>-->
+<!--<li>1</li>-->
+<!--<li>2</li>-->
+<!--</ol>-->
+
+<!--<script>-->
+    <!--var newLi=document.createElement('li');-->
+    <!--newLi.innerHTML='Привет, мир!';-->
+
+    <!--list.appendChild(newLi);-->
+<!--</script>-->
+
+
+<!--<ol id="list1">-->
+<!--<li>0</li>-->
+<!--<li>1</li>-->
+<!--<li>2</li>-->
+<!--</ol>-->
+<!--<script>-->
+    <!--var newLi1=document.createElement('li');-->
+    <!--newLi1.innerHTML='Привет, мир!';-->
+
+    <!--list1.insertBefore(newLi1,list1.children[1]);-->
+<!--</script>-->
+
+
+<!--<style>-->
+    <!--.alert{-->
+        <!--padding:15px;-->
+        <!--border:1px solid #d6e9c6;-->
+        <!--border-radius:4px;-->
+        <!--color: #3c763d;-->
+        <!--background-color: #dff0d8;-->
+    <!--}-->
+<!--</style>-->
+
+
+<!--<h3>Сообщение пропадёт через секунду</h3>-->
+
+
+<!--<script>-->
+    <!--var div =document.createElement('div');-->
+    <!--div.className="alert alert-success";-->
+    <!--div.innerHTML="<strong>Ура!</strong> Вы прочитали это важное сообщение.";-->
+
+    <!--document.body.appendChild(div);-->
+
+    <!--setTimeout(function(){-->
+        <!--div.parentNode.removeChild(div);-->
+    <!--},1000);-->
+<!--</script>-->
+
+
+</body>
+</html>
